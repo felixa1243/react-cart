@@ -18,8 +18,20 @@ export const cartSlice = createSlice({
                     item.qty += 1
                 }
             })
+        },
+        decQty:(state, action)=>{
+            state.flat().forEach(item => {
+                if (item.productName === action.payload.productName) {
+                    if(item.qty <= 0){
+                        item.qty = 0
+                    }
+                    else {
+                        item.qty -= 1
+                    }
+                }
+            })
         }
     }
 })
-export const {addProduct, addQty} = cartSlice.actions
+export const {addProduct, addQty,decQty} = cartSlice.actions
 export const getProducts = (state: RootState) => state.products
