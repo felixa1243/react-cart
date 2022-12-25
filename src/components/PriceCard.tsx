@@ -3,7 +3,7 @@ import {getProducts} from "../app/feat/cart.slice";
 
 export const PriceCard = () => {
     const priceList = useSelector(getProducts).map(o=>o.price*o.qty)
-    const total = priceList.reduce((total,nextVal)=>total+nextVal)
+    const total = priceList.length >0 && priceList.reduce((total,nextVal)=>total+nextVal)
     return <div
         className={"flex rounded-lg flex-1 border-[#dedede] border-[1px] px-8 mx-8 flex-col shadow-lg shadow-gray-200 p-7"}>
         <h2 className={"text-xl font-semibold mt-5"}>The total ammount</h2>

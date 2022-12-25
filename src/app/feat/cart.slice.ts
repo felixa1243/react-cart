@@ -19,19 +19,25 @@ export const cartSlice = createSlice({
                 }
             })
         },
-        decQty:(state, action)=>{
+        decQty: (state, action) => {
             state.flat().forEach(item => {
                 if (item.productName === action.payload.productName) {
-                    if(item.qty <= 0){
+                    if (item.qty <= 0) {
                         item.qty = 0
-                    }
-                    else {
+                    } else {
                         item.qty -= 1
                     }
                 }
             })
+        },
+        removeItem: (state, action) => {
+            const product = state.flat().find(item => item.productName === action.payload.productName)
+            if (product) {
+                const index = state.indexOf(product)
+                return [...state.slice(0, index), ...state.slice(index + 1)]
+            }
         }
     }
 })
-export const {addProduct, addQty,decQty} = cartSlice.actions
+export const {addProduct, addQty, decQty,removeItem} = cartSlice.actions
 export const getProducts = (state: RootState) => state.products

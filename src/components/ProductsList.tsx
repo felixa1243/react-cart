@@ -1,7 +1,7 @@
 import {FunctionComponent} from "react";
 import {CardImage} from "./CardImage";
 import {AiFillHeart, FaTrash} from "react-icons/all";
-import {addQty, decQty, getProducts} from "../app/feat/cart.slice";
+import {addQty, decQty, getProducts, removeItem} from "../app/feat/cart.slice";
 import {useSelector} from "react-redux";
 import {useAppDispatch} from "../app/hooks/hooks";
 import {ButtonGroup} from "./ButtonGroup";
@@ -18,14 +18,14 @@ export const ProductsList: FunctionComponent = () => {
                         <div
                             className={'flex flex-row flex-2 sm:flex-col lg:flex-row ease-in-out duration-500'}>
                             <div>
-                                <CardImage src={product.imagePath}/>
+                                <CardImage src={product.imagePath} alt={product.productName}/>
                             </div>
                             {/*left*/}
                             <div className={"grid-cols-2 min-h-full"}>
                                 <h2 className={"text-base font-medium ml-6 mt-3"}>{product.productName}</h2>
-                                <div className={"flex sm:flex-col xs:flex-col"}>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productType}</h2>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productColor}</h2>
+                                <div className={"flex sm:flex-col md:flex-col lg:flex-row xs:flex-col"}>
+                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productType}-</h2>
+                                    <h2 className={"text-base text-gray-500 font-medium mt-3"}>{product.productColor}</h2>
                                 </div>
                                 <div className={"flex"}>
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>COLOR</h2>
@@ -36,7 +36,7 @@ export const ProductsList: FunctionComponent = () => {
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.size}</h2>
                                 </div>
                                 <div className={"flex gap-9 xs:flex-col xs:mt-5"}>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3 hover:text-red-600 hover:cursor-pointer"}>
+                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3 hover:text-red-600 hover:cursor-pointer"} onClick={()=>dispatch(removeItem(product))}>
                                         <FaTrash className={'inline-block h-full'}/> &nbsp;Remove item</h2>
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3 hover:text-pink-600 hover:cursor-pointer"}>
                                         <AiFillHeart className={'inline-block'}/> &nbsp;Move to wishlist</h2>
