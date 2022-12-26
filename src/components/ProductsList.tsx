@@ -23,8 +23,8 @@ export const ProductsList: FunctionComponent = () => {
                             {/*left*/}
                             <div className={"grid-cols-2 min-h-full"}>
                                 <h2 className={"text-base font-medium ml-6 mt-3"}>{product.productName}</h2>
-                                <div className={"flex sm:flex-col md:flex-col lg:flex-row xs:flex-col"}>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productType}-</h2>
+                                <div className={"flex gap-2"}>
+                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productType}</h2>
                                     <h2 className={"text-base text-gray-500 font-medium mt-3"}>{product.productColor}</h2>
                                 </div>
                                 <div className={"flex"}>
@@ -35,17 +35,17 @@ export const ProductsList: FunctionComponent = () => {
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>SIZE</h2>
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.size}</h2>
                                 </div>
-                                <div className={"flex gap-9 xs:flex-col xs:mt-5"}>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3 hover:text-red-600 hover:cursor-pointer"} onClick={()=>dispatch(removeItem(product))}>
+                                <div className={"flex mt-5 xs:flex-col xs:mt-5 w-full"}>
+                                    <h2 className={"text-sm text-gray-500 font-medium ml-6 mt-3 hover:text-red-600 hover:cursor-pointer"} onClick={()=>dispatch(removeItem(product))}>
                                         <FaTrash className={'inline-block h-full'}/> &nbsp;Remove item</h2>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3 hover:text-pink-600 hover:cursor-pointer"}>
-                                        <AiFillHeart className={'inline-block'}/> &nbsp;Move to wishlist</h2>
+                                    <h2 className={"text-sm text-gray-500 font-medium ml-6 mt-3 hover:text-pink-600 hover:cursor-pointer"}>
+                                        <AiFillHeart className={'inline-block h-full'}/> &nbsp;Move to wishlist</h2>
                                 </div>
                             </div>
                         </div>
                         {/*right*/}
                         <div className={'flex-1 flex flex-col items-end justify-between '}>
-                            <div>
+                            <div className={'flex flex-col items-center'}>
                                 <ButtonGroup className={'mr-4 mt-8 h-[40px]'}>
                                     <button
                                         className={'inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white'}
@@ -63,6 +63,7 @@ export const ProductsList: FunctionComponent = () => {
                                         -
                                     </button>
                                 </ButtonGroup>
+                                {product.qty > 0 && (<p className={'text-center w-full text-xs mt-1 md:mr-4'}>Note,{product.qty} piece</p>)}
                             </div>
                             <div className={'mb-5'}>
                                 <p className={"text-base text-gray-500 font-medium ml-6 mt-3"}>${product.price}</p>
