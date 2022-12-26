@@ -10,7 +10,7 @@ export const ProductsList: FunctionComponent = () => {
     const products = useSelector(getProducts)
     const dispatch = useAppDispatch()
     return (
-        <div className={"flex min-h-full min-w-full flex-col p-10 "}>
+        <div className={"flex flex-grow min-w-full flex-col p-10 items-start content-start"}>
             <h2 className={'text-xl mb-4'}>Cart ({products.length}) items</h2>
             {
                 products.map((product, i) => (
@@ -27,9 +27,9 @@ export const ProductsList: FunctionComponent = () => {
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productType}</h2>
                                     <h2 className={"text-base text-gray-500 font-medium mt-3"}>{product.productColor}</h2>
                                 </div>
-                                <div className={"flex"}>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>COLOR</h2>
-                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>{product.productColor}</h2>
+                                <div className={"flex gap-2"}>
+                                    <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>Color</h2>
+                                    <h2 className={"text-base text-gray-500 font-medium mt-3"}>{product.productColor}</h2>
                                 </div>
                                 <div className={"flex mt-3"}>
                                     <h2 className={"text-base text-gray-500 font-medium ml-6 mt-3"}>SIZE</h2>
